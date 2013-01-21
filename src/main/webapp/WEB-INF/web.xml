@@ -6,8 +6,10 @@
     <display-name>todolist</display-name>
 
     <!-- All the Servlets and Filters are configured by this ServletContextListener :-->
-    <listener>
+    <!--listener>
         <listener-class>org.demo.todolist.config.WebConfigurer</listener-class>
-    </listener>
+    </listener -->
+
+
 
 </web-app>

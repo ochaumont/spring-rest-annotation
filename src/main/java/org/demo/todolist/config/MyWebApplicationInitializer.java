@@ -3,23 +3,23 @@ package org.demo.todolist.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import javax.servlet.ServletRegistration;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.DispatcherServlet;
 
-public class WebConfigurer implements ServletContextListener {
+public class MyWebApplicationInitializer implements WebApplicationInitializer  {
 
-    private final Log log = LogFactory.getLog(WebConfigurer.class);
+    private final Log log = LogFactory.getLog(MyWebApplicationInitializer.class);
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        ServletContext servletContext = sce.getServletContext();
+    public void onStartup(ServletContext  servletContext) {
+       
         log.info("Web application configuration");
 
         log.debug("Configuring Spring root application context");
@@ -55,13 +55,5 @@ public class WebConfigurer implements ServletContextListener {
         log.debug("Web application fully configured");
     }
 
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        log.info("Destroying Web application");
-        WebApplicationContext ac = WebApplicationContextUtils.getRequiredWebApplicationContext(sce.getServletContext());
-        AnnotationConfigWebApplicationContext gwac = (AnnotationConfigWebApplicationContext) ac;
-        gwac.close();
-        log.debug("Web application destroyed");
-    }
-
+   
 }
